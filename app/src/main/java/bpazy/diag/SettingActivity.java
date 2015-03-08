@@ -37,6 +37,7 @@ public class SettingActivity extends ActionBarActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String Cookie = editText_Cookie.getText().toString();
         editor.putString("Cookie", Cookie);
+        editor.putString("userName", Cookie);
         editor.apply();
         Toast.makeText(this,"保存成功",Toast.LENGTH_LONG).show();
     }
