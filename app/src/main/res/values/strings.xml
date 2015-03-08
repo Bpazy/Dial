@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">快捷联网</string>
+    <string name="action_settings">Settings</string>
+    <string name="connect">一键联网</string>
+    <string name="cookie">Cookie:</string>
+    <string name="edit_cookie">在这里输入Cookie</string>
+    <string name="setting">设置</string>
+    <string name="title_activity_setting">setting</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="return_to_mainactivity">返回</string>
+    <string name="setting_save">保存</string>
+    <string name="userName">账号:</string>
+    <string name="edit_userName">在这里输入账号</string>
+</resources>
