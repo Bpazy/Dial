@@ -1,10 +1,11 @@
-快捷拨号
+###                              快捷拨号
+
 ===
-	目前的版本仅支持MERCURY路由器。
-	[Click to download release](https://github.com/Bpazy/Diag/releases/download/v1.2/diag.rar)
-	[Click to download source.zip](https://github.com/Bpazy/Diag/archive/v1.2.zip)
-	[Click to download source.tar.gz](https://github.com/Bpazy/Diag/archive/v1.2.tar.gz)
-	[我的博客](http://blog.csdn.net/guodongxiaren) 
+目前的版本仅支持MERCURY路由器。</br>
+[Click to download release](https://github.com/Bpazy/Diag/releases/download/v1.2/diag.rar)</br>
+[Click to download source.zip](https://github.com/Bpazy/Diag/archive/v1.2.zip)</br>
+[Click to download source.tar.gz](https://github.com/Bpazy/Diag/archive/v1.2.tar.gz)
+
 使用方法
 ---
 	点击`设置`进入设置界面
