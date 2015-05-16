@@ -3,3 +3,4 @@
 .idea
 /build
 /app/build
+!/app/build/outputs/apk/app-debug.apk
