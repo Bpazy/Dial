@@ -1,6 +1,9 @@
 快捷拨号
 ===
 	目前的版本仅支持MERCURY路由器。
+	[Click to download release](https://github.com/Bpazy/Diag/releases/download/v1.2/diag.rar)
+	[Click to download source.zip](https://github.com/Bpazy/Diag/archive/v1.2.zip)
+	[Click to download source.tar.gz](https://github.com/Bpazy/Diag/archive/v1.2.tar.gz)
 
 使用方法
 ---
