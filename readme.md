@@ -4,7 +4,7 @@
 	[Click to download release](https://github.com/Bpazy/Diag/releases/download/v1.2/diag.rar)
 	[Click to download source.zip](https://github.com/Bpazy/Diag/archive/v1.2.zip)
 	[Click to download source.tar.gz](https://github.com/Bpazy/Diag/archive/v1.2.tar.gz)
-
+	[我的博客](http://blog.csdn.net/guodongxiaren) 
 使用方法
 ---
 	点击`设置`进入设置界面
