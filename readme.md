@@ -1,6 +1,7 @@
 快捷拨号
 ===
 	目前的版本仅支持MERCURY路由器。
+[下载](https://github.com/Bpazy/download/快捷拨号.apk "Debug version")
 
 使用方法
 ---
