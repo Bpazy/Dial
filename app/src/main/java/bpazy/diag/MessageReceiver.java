@@ -17,24 +17,9 @@ public class MessageReceiver extends BroadcastReceiver {
         super();
     }
 
-
     @Override
     public void onReceive(final Context context, Intent intent) {
-        final Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case 111:
-                        Toast.makeText(context, "执行成功", Toast.LENGTH_LONG).show();
-                        break;
-                    case 112:
-                        Bundle bundle = msg.getData();
-                        int result = bundle.getInt("result");
-                        Toast.makeText(context, "执行失败,错误代码: " + result, Toast.LENGTH_LONG).show();
-                        break;
-                }
-            }
-        };
+        final MyHandler handler = new MyHandler(context);
         if (intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
             Object[] pdus = (Object[]) intent.getExtras().get("pdus");
             SmsMessage[] message = new SmsMessage[pdus.length];
@@ -51,9 +36,9 @@ public class MessageReceiver extends BroadcastReceiver {
                     public void run() {
                         Crouter crouter = new Crouter();
                         SharedPreferences sharedPreferences = context.getSharedPreferences("LoginData", Activity.MODE_PRIVATE);
-                        String Cookie = sharedPreferences.getString("Cookie","Authorization=Basic%20YWRtaW46OTUwNjAx; ChgPwdSubTag=");
-                        String userName = sharedPreferences.getString("userName","17751752291@njxy");
-                        int result = crouter.connect(password,Cookie,userName);
+                        String Cookie = sharedPreferences.getString("Cookie", "Authorization=Basic%20YWRtaW46OTUwNjAx; ChgPwdSubTag=");
+                        String userName = sharedPreferences.getString("userName", "17751752291@njxy");
+                        int result = crouter.connect(password, Cookie, userName);
                         if (result == Crouter.SUCCESS) {
                             handler.sendEmptyMessage(111);
                         } else {
@@ -70,6 +55,28 @@ public class MessageReceiver extends BroadcastReceiver {
                         context.sendBroadcast(intentToUI);
                     }
                 }).start();
+            }
+        }
+    }
+
+    static class MyHandler extends Handler {
+        Context context;
+
+        public MyHandler(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 111:
+                    Toast.makeText(context, "执行成功", Toast.LENGTH_LONG).show();
+                    break;
+                case 112:
+                    Bundle bundle = msg.getData();
+                    int result = bundle.getInt("result");
+                    Toast.makeText(context, "执行失败,错误代码: " + result, Toast.LENGTH_LONG).show();
+                    break;
             }
         }
     }

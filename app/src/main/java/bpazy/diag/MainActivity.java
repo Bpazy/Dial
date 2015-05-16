@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -19,11 +20,13 @@ public class MainActivity extends ActionBarActivity {
     TextView textView;
     EditText editText_Cookie;
     BroadcastReceiverUI receiverUI;
+    WifiManager wifiManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        wifiManager = (WifiManager)getSystemService(WIFI_SERVICE);
         button = (Button) findViewById(R.id.button_connect);
         editText_Cookie = (EditText) findViewById(R.id.edit_cookie);
         button.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +74,8 @@ public class MainActivity extends ActionBarActivity {
             switch (returnCode) {
                 case Crouter.SUCCESS:
                     textView.setText("执行成功");
+                    if(wifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED)
+                        wifiManager.setWifiEnabled(false);
                     break;
                 default:
                     textView.setText("执行失败,错误代码: " + returnCode);
