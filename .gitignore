@@ -3,3 +3,5 @@
 /.idea/
 /build/
 /app/build/
+/*.iml
+/app/*.iml
