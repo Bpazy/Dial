@@ -1,6 +1,6 @@
-.gradle
+/.gradle
 /local.properties
-.idea
-/build
-/app/build
-!/app/build/outputs/apk/app-debug.apk
+/.idea/
+/build/
+/app/build/
+!/app/build/outputs/
