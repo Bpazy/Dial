@@ -5,5 +5,4 @@ android:
     - android-21
     - extra
     
-    before_script:
-    - chmod +x gradlew
+    sudo: required
