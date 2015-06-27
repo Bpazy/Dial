@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -71,6 +72,9 @@ public class MessageReceiver extends BroadcastReceiver {
             switch (msg.what) {
                 case 111:
                     Toast.makeText(context, "执行成功", Toast.LENGTH_LONG).show();
+                    WifiManager wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+                    if(wifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED)
+                        wifiManager.setWifiEnabled(false);
                     break;
                 case 112:
                     Bundle bundle = msg.getData();

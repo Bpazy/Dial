@@ -32,6 +32,7 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                textView.setText("");
                 Toast.makeText(MainActivity.this, "请稍候...", Toast.LENGTH_LONG).show();
                 OtherFunctions.sendMessage("10001", "xykdmm");
                 button.setClickable(false);
@@ -74,8 +75,6 @@ public class MainActivity extends ActionBarActivity {
             switch (returnCode) {
                 case Crouter.SUCCESS:
                     textView.setText("执行成功");
-                    if(wifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED)
-                        wifiManager.setWifiEnabled(false);
                     break;
                 default:
                     textView.setText("执行失败,错误代码: " + returnCode);
