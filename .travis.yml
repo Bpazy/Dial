@@ -3,8 +3,7 @@ language: android
 android:
   components:
     - build-tools-21.1.2
-    - sys-img-armeabi-v7a-android-19
-    - sys-img-x86-android-17
+    - sys-img-armeabi-v7a-android-21
     - android-21
     - extra
     
