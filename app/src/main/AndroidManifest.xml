@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="bpazy.diag" >
+    package="bpazy.dial">
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.NoActionBar" >
         <activity
-            android:name=".MainActivity"
+            android:name="bpazy.dial.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
         </activity>
 
         <receiver
-            android:name=".MessageReceiver"
+            android:name="bpazy.dial.MessageReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter android:priority="1000" >
@@ -34,12 +34,12 @@
         </receiver>
 
         <activity
-            android:name=".SettingActivity"
+            android:name="bpazy.dial.SettingActivity"
             android:label="@string/title_activity_setting"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName="bpazy.dial.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="bpazy.diag.MainActivity" />
+                android:value="bpazy.dial.MainActivity" />
         </activity>
     </application>
 

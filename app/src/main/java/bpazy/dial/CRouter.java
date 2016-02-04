@@ -1,4 +1,4 @@
-package bpazy.diag;
+package bpazy.dial;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,13 +7,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Crouter {
-    public Crouter() {
+public class CRouter {
+    public CRouter() {
     }
 
     public final static int SUCCESS = 0;
     public final static int INIT_URL_ERROR = 100;
-    public final static int IOEXCEPTION = 101;
+    public final static int IO_EXCEPTION = 101;
     public final static int UNKNOWN_ERROR = 102;
 
     public int connect(String password, String Cookie, String userName) {
@@ -43,7 +43,7 @@ public class Crouter {
         } catch (MalformedURLException e) {
             return INIT_URL_ERROR;
         } catch (IOException e) {
-            return IOEXCEPTION;
+            return IO_EXCEPTION;
         }
         return UNKNOWN_ERROR;
     }

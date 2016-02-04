@@ -1,4 +1,4 @@
-package bpazy.diag;
+package bpazy.dial;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

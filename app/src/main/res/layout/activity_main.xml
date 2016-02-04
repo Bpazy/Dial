@@ -10,9 +10,6 @@
     android:orientation="vertical"
     android:gravity="center">
 
-
-
-
     <Button
         android:layout_width="70dp"
         android:layout_height="35dp"
@@ -28,7 +25,7 @@
         android:textSize="15sp"/>
 
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

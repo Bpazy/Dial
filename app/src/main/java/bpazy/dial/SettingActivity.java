@@ -1,4 +1,4 @@
-package bpazy.diag;
+package bpazy.dial;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
