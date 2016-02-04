@@ -1,6 +1,6 @@
 #快捷拨号
 
-[![Build Status](https://travis-ci.org/Bpazy/Diag.svg)](https://travis-ci.org/Bpazy/Diag)
+[![Build Status](https://travis-ci.org/Bpazy/Dial.svg?branch=master)](https://travis-ci.org/Bpazy/Dial)
 
 目前的版本仅支持MERCURY路由器。</br>
 [Click to download release](https://github.com/Bpazy/Diag/releases/download/v1.2/diag.rar)</br>
