@@ -12,7 +12,7 @@ import java.util.Map;
 /***
  * 通过通知读取短信内容
  */
-public class MyNotificationService extends NotificationListenerService {
+public class SmsNotificationService extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {

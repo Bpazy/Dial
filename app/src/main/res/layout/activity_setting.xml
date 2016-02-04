@@ -26,13 +26,16 @@
 
         <EditText
             android:textColor="#FFFFCD"
+            android:maxLines="3"
+            android:minLines="3"
+            android:inputType="textMultiLine"
             android:id="@+id/edit_cookie"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/edit_cookie"
             android:textSize="20sp"
             android:layout_weight="3"
-            android:singleLine="true" />
+            android:singleLine="false" />
     </LinearLayout>
 
     <LinearLayout
@@ -75,12 +78,16 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="@string/setting_save"
             android:onClick="saveLoginData" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="@string/notify_permission"
+            android:onClick="startNotifyActivity" />
     </LinearLayout>
 
 </LinearLayout>

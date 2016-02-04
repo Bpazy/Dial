@@ -1,6 +1,7 @@
 package bpazy.dial;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -48,5 +49,12 @@ public class SettingActivity extends ActionBarActivity {
         String userName = sharedPreferences.getString("userName", "17751752291@njxy");
         editText_Cookie.setText(Cookie);
         editText_userName.setText(userName);
+    }
+
+    public void startNotifyActivity(View v) {
+        Toast.makeText(this, R.string.toast_warning, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent();
+        intent.setAction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+        startActivity(intent);
     }
 }
