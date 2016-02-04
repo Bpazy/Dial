@@ -11,27 +11,38 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@drawable/wifi_router"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.NoActionBar" >
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name="bpazy.dial.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name="bpazy.dial.MessageReceiver"
-            android:enabled="true"
-            android:exported="true" >
-            <intent-filter android:priority="1000" >
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+        <!--通过截取短信-->
+        <!--<receiver-->
+        <!--android:name="bpazy.dial.MessageReceiver"-->
+        <!--android:enabled="true"-->
+        <!--android:exported="true" >-->
+        <!--<intent-filter android:priority="1000" >-->
+        <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <!--通过截取通知-->
+        <service
+            android:name=".MyNotificationService"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
-        </receiver>
+        </service>
 
         <activity
             android:name="bpazy.dial.SettingActivity"

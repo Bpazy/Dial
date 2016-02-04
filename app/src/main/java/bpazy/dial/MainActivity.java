@@ -32,9 +32,9 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 wifiManager.setWifiEnabled(true);
                 textView.setText("");
-                TextView textView = new TextView(MainActivity.this);
-                textView.setText("请稍候...");
-                toast.setView(textView);
+                TextView tv = new TextView(MainActivity.this);
+                tv.setText("请稍候...");
+                toast.setView(tv);
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.show();
                 UtilsHelpers.sendMessage("10001", "xykdmm");
@@ -82,10 +82,10 @@ public class MainActivity extends ActionBarActivity {
             int returnCode = intent.getExtras().getInt("data");
             switch (returnCode) {
                 case CRouter.SUCCESS:
-                    textView.setText("执行成功");
+                    textView.setText(R.string.success);
                     break;
                 default:
-                    textView.setText("执行失败,错误代码: " + returnCode);
+                    textView.setText(R.string.failure + returnCode);
             }
         }
     }
