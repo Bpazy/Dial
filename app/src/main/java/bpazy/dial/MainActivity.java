@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 toast.setView(tv);
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.show();
-                UtilsHelpers.sendMessage("10001", "xykdmm");
+//                UtilsHelpers.sendMessage("10001", "xykdmm");
+                UtilsHelpers.sendMessage("10010", "102");
                 button.setClickable(false);
             }
         });
@@ -82,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
             int returnCode = intent.getExtras().getInt("data");
             switch (returnCode) {
                 case CRouter.SUCCESS:
-                    textView.setText(R.string.success);
+                    textView.setText(getString(R.string.success));
                     break;
                 default:
-                    textView.setText(R.string.failure + returnCode);
+                    textView.setText(getString(R.string.failure, returnCode));
             }
         }
     }

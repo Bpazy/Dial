@@ -26,7 +26,7 @@
 
         <!--通过截取短信-->
         <!--<receiver-->
-        <!--android:name="bpazy.dial.MessageReceiver"-->
+        <!--android:name="bpazy.dial.MessageReceiverFromSmsFromSms"-->
         <!--android:enabled="true"-->
         <!--android:exported="true" >-->
         <!--<intent-filter android:priority="1000" >-->
