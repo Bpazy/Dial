@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             button.setClickable(true);
             int returnCode = intent.getExtras().getInt("data");
             switch (returnCode) {
-                case CRouter.SUCCESS:
+                case UtilsHelpers.CRouter.SUCCESS:
                     textView.setText(getString(R.string.success));
                     break;
                 default:
