@@ -38,6 +38,13 @@ public class UtilsHelpers {
         return null;
     }
 
+    /***
+     * 使用UrlConnection
+     *
+     * @param password Password in Router
+     * @param context  context
+     */
+    @Deprecated
     public static void uploadPassword(final String password, final Context context) {
         // 是否打断短信传播
         // abortBroadcast();
@@ -62,6 +69,11 @@ public class UtilsHelpers {
         }).start();
     }
 
+    /***
+     * 使用okhttp
+     * @param password Password in Router
+     * @param context context
+     */
     public static void uploadPassword2(final String password, final Context context) {
         // 是否打断短信传播
         // abortBroadcast();
@@ -107,6 +119,7 @@ public class UtilsHelpers {
          * @param userName Router's username
          * @return SUCCESS = 0 | INIT_URL_ERROR = 100 | IO_EXCEPTION = 101 | UNKNOWN_ERROR = 102;
          */
+        @Deprecated
         public static int connect(String password, String Cookie, String userName) {
             try {
                 URL url = new URL("http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=" + userName + "&psw=" + password + "&confirm=" + password + "&specialDial=100&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=2&Save=%B1%A3+%B4%E6");
