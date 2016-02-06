@@ -10,7 +10,7 @@
     <string name="setting_save">保存</string>
     <string name="userName">账号:</string>
     <string name="edit_userName">在这里输入账号</string>
-    <string name="failure">执行失败,错误代码: %1$d</string>
+    <string name="failure">执行失败</string>
     <string name="success">执行成功</string>
     <string name="notify_permission">通知权限</string>
     <string name="toast_warning">确保APP的通知权限被打开，否则无法正常工作</string>

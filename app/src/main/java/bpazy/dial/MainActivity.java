@@ -80,13 +80,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             button.setClickable(true);
-            int returnCode = intent.getExtras().getInt("data");
-            switch (returnCode) {
-                case UtilsHelpers.CRouter.SUCCESS:
-                    textView.setText(getString(R.string.success));
-                    break;
-                default:
-                    textView.setText(getString(R.string.failure, returnCode));
+            boolean returnCode = intent.getExtras().getBoolean("data");
+            if (returnCode) {
+                textView.setText(getString(R.string.success));
+            } else {
+                textView.setText(getString(R.string.failure));
             }
         }
     }

