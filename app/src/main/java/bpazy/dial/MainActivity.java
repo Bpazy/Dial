@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 toast.setView(tv);
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.show();
-//                UtilsHelpers.sendMessage("10001", "xykdmm");
-                UtilsHelpers.sendMessage("10010", "102");
+                UtilsHelpers.sendMessage("10001", "xykdmm");
+//                UtilsHelpers.sendMessage("10010", "102"); //联通查话费短信Test
                 button.setClickable(false);
             }
         });
