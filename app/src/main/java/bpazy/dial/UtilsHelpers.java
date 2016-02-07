@@ -86,9 +86,9 @@ public class UtilsHelpers {
                 String userName = sharedPreferences.getString("userName", "17751752291@njxy");
                 boolean result = CRouter.connect2(password, Cookie, userName);
                 if (result) {
-                    Toast.makeText(context, "执行成功", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getString(R.string.success), Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, "执行失败", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getString(R.string.failure), Toast.LENGTH_LONG).show();
                 }
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("data", result);

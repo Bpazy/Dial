@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">快捷联网</string>
+    <string name="action_settings">设置</string>
+    <string name="setting">设置</string>
+    <string name="title_activity_setting">设置</string>
+    <string name="connect">一键联网</string>
+    <string name="cookie">Cookie:</string>
+    <string name="edit_cookie">在这里输入Cookie</string>
+    <string name="return_to_mainactivity">返回</string>
+    <string name="setting_save">保存</string>
+    <string name="userName">账号:</string>
+    <string name="edit_userName">在这里输入账号</string>
+    <string name="failure">执行失败</string>
+    <string name="success">执行成功</string>
+    <string name="notify_permission">通知权限</string>
+    <string name="toast_warning">确保APP的通知权限被打开，否则无法正常工作</string>
+</resources>
