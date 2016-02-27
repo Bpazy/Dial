@@ -24,6 +24,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class UtilsHelpers {
+
     public static void sendMessage(String num, String content) {
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage(num, null, content, null, null);

@@ -1,5 +1,6 @@
 package bpazy.dial;
 
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,10 +8,14 @@ import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Method;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,10 +43,29 @@ public class MainActivity extends AppCompatActivity {
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.show();
                 UtilsHelpers.sendMessage("10001", "xykdmm");
-//                UtilsHelpers.sendMessage("10010", "102"); //联通查话费短信Test
                 button.setClickable(false);
             }
         });
+
+        try {
+            check();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void check() throws NoSuchMethodException {
+        Class c = SmsManager.class;
+        Method[] methods = c.getDeclaredMethods();
+        for (Method m : methods) {
+            Log.v("sms", m.toString());
+        }
+        Log.v("sms", "================");
+        Method sendMultipartTextMessageWithPriority = SmsManager.class.getDeclaredMethod("sendTextMessageWithPriority",
+                String.class, String.class,
+                String.class,
+                PendingIntent.class,
+                PendingIntent.class, int.class);
     }
 
     private void initView() {
