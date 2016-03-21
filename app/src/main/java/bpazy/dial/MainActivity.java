@@ -1,6 +1,7 @@
 package bpazy.dial;
 
-import android.app.PendingIntent;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,14 +9,10 @@ import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.lang.reflect.Method;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,32 +43,26 @@ public class MainActivity extends AppCompatActivity {
                 button.setClickable(false);
             }
         });
-
-        try {
-            check();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void check() throws NoSuchMethodException {
-        Class c = SmsManager.class;
-        Method[] methods = c.getDeclaredMethods();
-        for (Method m : methods) {
-            Log.v("sms", m.toString());
-        }
-        Log.v("sms", "================");
-        Method sendMultipartTextMessageWithPriority = SmsManager.class.getDeclaredMethod("sendTextMessageWithPriority",
-                String.class, String.class,
-                String.class,
-                PendingIntent.class,
-                PendingIntent.class, int.class);
     }
 
     private void initView() {
         button = (Button) findViewById(R.id.button_connect);
         textView = (TextView) findViewById(R.id.text_view);
         toast = new Toast(this);
+
+        Button notifyButton = (Button) findViewById(R.id.notify_button);
+        notifyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Notification notification = new Notification.Builder(MainActivity.this).setContentText("密码123456")
+                        .setContentTitle("123")
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .build();
+
+                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                manager.notify(0, notification);
+            }
+        });
     }
 
     @Override

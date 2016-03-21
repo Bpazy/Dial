@@ -26,10 +26,10 @@
 
         <!--通过截取短信-->
         <!--<receiver-->
-        <!--android:name="bpazy.dial.MessageReceiverFromSmsFromSms"-->
+        <!--android:name="bpazy.dial.MessageReceiverFromSms"-->
         <!--android:enabled="true"-->
-        <!--android:exported="true" >-->
-        <!--<intent-filter android:priority="1000" >-->
+        <!--android:exported="true">-->
+        <!--<intent-filter android:priority="1000">-->
         <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
         <!--</intent-filter>-->
         <!--</receiver>-->

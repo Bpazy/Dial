@@ -34,7 +34,7 @@ public class MessageReceiverFromSms extends BroadcastReceiver {
             }
             final String password = UtilsHelpers.getPassword(sb.toString());
             if (password != null) {
-                UtilsHelpers.uploadPassword(password, context);
+                UtilsHelpers.uploadPassword2(password, context);
             }
         }
     }

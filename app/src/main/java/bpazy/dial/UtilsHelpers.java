@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -76,6 +77,7 @@ public class UtilsHelpers {
      * @param context context
      */
     public static void uploadPassword2(final String password, final Context context) {
+        Log.v("debug", "uploadPassword2() " + password);
         // 是否打断短信传播
         // abortBroadcast();
         new Thread(new Runnable() {
