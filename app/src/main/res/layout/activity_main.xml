@@ -31,10 +31,4 @@
         android:gravity="center"
         android:textSize="20sp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/notify_button"
-        android:text="notification" />
-
 </LinearLayout>

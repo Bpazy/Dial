@@ -175,7 +175,7 @@ public class UtilsHelpers {
             try {
                 response = client.newCall(request).execute();
                 String body = response.body().string();
-                if (body.matches("(.+)自动断线等待时间(.+)")) {
+                if (body.matches("[\\s\\S]*自动断线等待时间[\\s\\S]*")) {
                     return true;
                 }
             } catch (IOException e) {

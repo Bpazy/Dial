@@ -1,7 +1,5 @@
 package bpazy.dial;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -49,20 +47,6 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button_connect);
         textView = (TextView) findViewById(R.id.text_view);
         toast = new Toast(this);
-
-        Button notifyButton = (Button) findViewById(R.id.notify_button);
-        notifyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Notification notification = new Notification.Builder(MainActivity.this).setContentText("密码123456")
-                        .setContentTitle("123")
-                        .setSmallIcon(R.mipmap.ic_launcher)
-                        .build();
-
-                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                manager.notify(0, notification);
-            }
-        });
     }
 
     @Override
