@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.telephony.SmsManager;
@@ -90,6 +91,9 @@ public class UtilsHelpers {
                 boolean result = CRouter.connect2(password, Cookie, userName);
                 if (result) {
                     Toast.makeText(context, context.getString(R.string.success), Toast.LENGTH_LONG).show();
+                    WifiManager wifiManager = (WifiManager) context.getSystemService(Context
+                            .WIFI_SERVICE);
+                    wifiManager.setWifiEnabled(false);
                 } else {
                     Toast.makeText(context, context.getString(R.string.failure), Toast.LENGTH_LONG).show();
                 }
