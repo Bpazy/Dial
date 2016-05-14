@@ -8,8 +8,10 @@ import android.os.Build;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.Future;
 
 /***
  * 通过短信读取短信内容
@@ -38,28 +40,39 @@ public class MessageReceiverFromSms extends BroadcastReceiver {
                 }
                 sb.append(message[i].getDisplayMessageBody());
             }
-            final String password = UtilsHelpers.getPassword(sb.toString());
-            if (password != null) {
-                FutureTask<Boolean> task = UtilsHelpers.uploadPassword2(password, context);
-                try {
-                    boolean result = task.get();
-                    Toast toast = Toast.makeText(context, "", Toast.LENGTH_LONG);
-                    if (result) {
-                        toast.setText(context.getString(R.string.success));
-                        toast.show();
-                        WifiManager wifiManager = (WifiManager) context.getSystemService(Context
-                                .WIFI_SERVICE);
-                        wifiManager.setWifiEnabled(false);
-                    } else {
-                        toast.setText(context.getString(R.string.failure));
-                        toast.show();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
+            String password = UtilsHelpers.getPassword(sb.toString());
+            uploadPassword(context, password);
+        }
+    }
+
+    private void uploadPassword(Context context, String password) {
+        if (password != null) {
+            Future<Boolean> task = UtilsHelpers.uploadPassword2(password, context);
+            try {
+                boolean result = task.get();
+                Toast toast = Toast.makeText(context, "", Toast.LENGTH_LONG);
+                if (result) {
+                    toast.setText(context.getString(R.string.success));
+                    toast.show();
+                    WifiManager wifiManager = (WifiManager) context.getSystemService(Context
+                            .WIFI_SERVICE);
+                    wifiManager.setWifiEnabled(false);
+                } else {
+                    toast.setText(context.getString(R.string.failure));
+                    toast.show();
                 }
+                postEvent(result);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    private void postEvent(boolean result) {
+        EventClass event = new EventClass();
+        event.result = result;
+        EventBus.getDefault().post(event);
     }
 }

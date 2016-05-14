@@ -15,6 +15,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,12 +78,11 @@ public class UtilsHelpers {
 
     /***
      * 使用okhttp
-     *
-     * @param password Password in Router
+     *  @param password Password in Router
      * @param context  context
      */
-    public static FutureTask<Boolean> uploadPassword2(final String password,
-                                                      final Context context) {
+    public static Future<Boolean> uploadPassword2(final String password,
+                                                  final Context context) {
         FutureTask<Boolean> task = new FutureTask<>(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -93,7 +95,19 @@ public class UtilsHelpers {
             }
         });
         task.run();
-        return task;
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        return executorService.submit(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("LoginData",
+                        Activity.MODE_PRIVATE);
+                String Cookie = sharedPreferences.getString("Cookie",
+                        "Authorization=Basic%20YWRtaW46OTUwNjAx; ChgPwdSubTag=");
+                String userName = sharedPreferences.getString("userName", "17751752291@njxy");
+                return CRouter.connect2(password, Cookie, userName);
+            }
+        });
     }
 
     public static class CRouter {
