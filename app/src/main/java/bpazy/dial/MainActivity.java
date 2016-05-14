@@ -1,9 +1,6 @@
 package bpazy.dial;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,12 +9,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private TextView textView;
-    private BroadcastReceiverUI receiverUI;
+    //    private BroadcastReceiverUI receiverUI;
     private WifiManager wifiManager;
     private Toast toast;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EventBus.getDefault().register(this);
         wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         initView();
         button.setOnClickListener(new View.OnClickListener() {
@@ -52,21 +54,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterReceiver(receiverUI);
+//        unregisterReceiver(receiverUI);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        init_BroadcastReceiverUI();
+//        init_BroadcastReceiverUI();
     }
 
-    private void init_BroadcastReceiverUI() {
-        IntentFilter filter = new IntentFilter("toMainActivity");
-        receiverUI = new BroadcastReceiverUI();
-        this.registerReceiver(receiverUI, filter);
-    }
+//    private void init_BroadcastReceiverUI() {
+//        IntentFilter filter = new IntentFilter("toMainActivity");
+//        receiverUI = new BroadcastReceiverUI();
+//        this.registerReceiver(receiverUI, filter);
+//    }
 
     public void turnToSetting(View v) {
         Intent intent = new Intent();
@@ -74,17 +81,26 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public class BroadcastReceiverUI extends BroadcastReceiver {
+//    public class BroadcastReceiverUI extends BroadcastReceiver {
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            button.setClickable(true);
+//            boolean returnCode = intent.getExtras().getBoolean("data");
+//            if (returnCode) {
+//                textView.setText(getString(R.string.success));
+//            } else {
+//                textView.setText(getString(R.string.failure));
+//            }
+//        }
+//    }
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            button.setClickable(true);
-            boolean returnCode = intent.getExtras().getBoolean("data");
-            if (returnCode) {
-                textView.setText(getString(R.string.success));
-            } else {
-                textView.setText(getString(R.string.failure));
-            }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updateWidget(EventClass event) {
+        if (event.result) {
+            textView.setText(getString(R.string.success));
+        } else {
+            textView.setText(getString(R.string.failure));
         }
     }
 }

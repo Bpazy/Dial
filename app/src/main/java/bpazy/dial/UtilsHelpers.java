@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
-import android.os.Bundle;
 import android.os.Looper;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -78,7 +78,6 @@ public class UtilsHelpers {
      * @param context context
      */
     public static void uploadPassword2(final String password, final Context context) {
-        Log.v("debug", "uploadPassword2() " + password);
         // 是否打断短信传播
         // abortBroadcast();
         new Thread(new Runnable() {
@@ -97,12 +96,15 @@ public class UtilsHelpers {
                 } else {
                     Toast.makeText(context, context.getString(R.string.failure), Toast.LENGTH_LONG).show();
                 }
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("data", result);
-                Intent intentToUI = new Intent();
-                intentToUI.setAction("toMainActivity");
-                intentToUI.putExtras(bundle);
-                context.sendBroadcast(intentToUI);
+//                Bundle bundle = new Bundle();
+//                bundle.putBoolean("data", result);
+//                Intent intentToUI = new Intent();
+//                intentToUI.setAction("toMainActivity");
+//                intentToUI.putExtras(bundle);
+//                context.sendBroadcast(intentToUI);
+                EventClass event = new EventClass();
+                event.result = result;
+                EventBus.getDefault().post(event);
             }
         }).start();
     }
