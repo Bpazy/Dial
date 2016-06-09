@@ -72,7 +72,7 @@ public class MessageReceiverFromSms extends BroadcastReceiver {
 
     private void postEvent(boolean result) {
         EventClass event = new EventClass();
-        event.result = result;
+        event.execResult = result;
         EventBus.getDefault().post(event);
     }
 }

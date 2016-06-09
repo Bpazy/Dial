@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private TextView textView;
-    //    private BroadcastReceiverUI receiverUI;
     private WifiManager wifiManager;
     private Toast toast;
 
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-//        unregisterReceiver(receiverUI);
     }
 
     @Override
@@ -66,14 +64,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        init_BroadcastReceiverUI();
     }
-
-//    private void init_BroadcastReceiverUI() {
-//        IntentFilter filter = new IntentFilter("toMainActivity");
-//        receiverUI = new BroadcastReceiverUI();
-//        this.registerReceiver(receiverUI, filter);
-//    }
 
     public void turnToSetting(View v) {
         Intent intent = new Intent();
@@ -81,23 +72,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public class BroadcastReceiverUI extends BroadcastReceiver {
-//
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            button.setClickable(true);
-//            boolean returnCode = intent.getExtras().getBoolean("data");
-//            if (returnCode) {
-//                textView.setText(getString(R.string.success));
-//            } else {
-//                textView.setText(getString(R.string.failure));
-//            }
-//        }
-//    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void updateWidget(EventClass event) {
-        if (event.result) {
+        button.setClickable(true);
+        if (event.execResult) {
             textView.setText(getString(R.string.success));
         } else {
             textView.setText(getString(R.string.failure));
