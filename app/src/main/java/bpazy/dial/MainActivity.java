@@ -1,6 +1,8 @@
 package bpazy.dial;
 
 import android.content.Intent;
+import android.net.wifi.SupplicantState;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +33,28 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                wifiManager.setWifiEnabled(true);
+                UtilsHelpers.setReady(false);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        wifiManager.setWifiEnabled(true);
+                        WifiInfo connectionInfo = wifiManager.getConnectionInfo();
+                        while (!UtilsHelpers.isReady()) {
+                            if (connectionInfo.getSupplicantState() == SupplicantState.COMPLETED) {
+                                UtilsHelpers.setReady(true);
+                                synchronized (UtilsHelpers.class) {
+                                    UtilsHelpers.class.notifyAll();
+                                }
+                            } else {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                }).start();
                 textView.setText("");
                 TextView tv = new TextView(MainActivity.this);
                 tv.setText("请稍候...");
