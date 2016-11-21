@@ -18,7 +18,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +27,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class UtilsHelpers {
+
+    private static boolean isReady;
 
     public static void sendMessage(String num, String content) {
         SmsManager sms = SmsManager.getDefault();
@@ -78,24 +79,12 @@ public class UtilsHelpers {
 
     /***
      * 使用okhttp
-     *  @param password Password in Router
+     *
+     * @param password Password in Router
      * @param context  context
      */
     public static Future<Boolean> uploadPassword2(final String password,
                                                   final Context context) {
-        FutureTask<Boolean> task = new FutureTask<>(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                SharedPreferences sharedPreferences = context.getSharedPreferences("LoginData",
-                        Activity.MODE_PRIVATE);
-                String Cookie = sharedPreferences.getString("Cookie",
-                        "Authorization=Basic%20YWRtaW46OTUwNjAx; ChgPwdSubTag=");
-                String userName = sharedPreferences.getString("userName", "17751752291@njxy");
-                return CRouter.connect2(password, Cookie, userName);
-            }
-        });
-        task.run();
-
         ExecutorService executorService = Executors.newCachedThreadPool();
         return executorService.submit(new Callable<Boolean>() {
             @Override
@@ -110,18 +99,24 @@ public class UtilsHelpers {
         });
     }
 
+    public static boolean isReady() {
+        return isReady;
+    }
+
+    public static void setReady(boolean ready) {
+        isReady = ready;
+    }
+
     public static class CRouter {
-
-        private static Response response;
-        private static OkHttpClient client;
-
-        public CRouter() {
-        }
 
         public final static int SUCCESS = 0;
         public final static int INIT_URL_ERROR = 100;
         public final static int IO_EXCEPTION = 101;
         public final static int UNKNOWN_ERROR = 102;
+        private static Response response;
+        private static OkHttpClient client;
+        public CRouter() {
+        }
 
         /***
          * @param password Router's password
@@ -169,6 +164,15 @@ public class UtilsHelpers {
         }
 
         public static boolean connect2(String password, String Cookie, String userName) {
+            synchronized (UtilsHelpers.class) {
+                while (!isReady) {
+                    try {
+                        UtilsHelpers.class.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
             client = new OkHttpClient();
             Headers headers = new Headers.Builder()
                     .add("Cookie", Cookie)
